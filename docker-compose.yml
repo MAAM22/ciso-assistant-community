@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       - ALLOWED_HOSTS=backend,localhost
-      - CISO_ASSISTANT_URL=https://localhost:8443
+      - CISO_ASSISTANT_URL=https://localhost:8444
       - DJANGO_DEBUG=True
       - AUTH_TOKEN_TTL=7200
 
@@ -29,7 +29,7 @@ services:
     restart: always
     environment:
       - ALLOWED_HOSTS=backend,localhost
-      - CISO_ASSISTANT_URL=https://localhost:8443
+      - CISO_ASSISTANT_URL=https://localhost:8444
       - DJANGO_DEBUG=False
       - AUTH_TOKEN_TTL=7200
 
@@ -45,7 +45,7 @@ services:
     container_name: frontend_new
     environment:
       - PUBLIC_BACKEND_API_URL=http://backend:8000/api
-      - PUBLIC_BACKEND_API_EXPOSED_URL=https://localhost:8443/api
+      - PUBLIC_BACKEND_API_EXPOSED_URL=https://localhost:8444/api
       - PROTOCOL_HEADER=x-forwarded-proto
       - HOST_HEADER=x-forwarded-host
     image: ghcr.io/intuitem/ciso-assistant-community/frontend:latest
@@ -58,13 +58,13 @@ services:
     container_name: caddy_new
     image: caddy:2.8.4
     environment:
-      - CISO_ASSISTANT_URL=https://localhost:8443
+      - CISO_ASSISTANT_URL=https://localhost:8444
     depends_on:
       backend:
         condition: service_healthy
     restart: unless-stopped
     ports:
-      - 8443:8443
+      - 8444:8443
     volumes:
       - ./caddy_data:/data
     command: |
