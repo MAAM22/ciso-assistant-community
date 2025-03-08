@@ -1,6 +1,6 @@
 services:
   backend:
-    container_name: backend
+    container_name: backend_new
     image: ghcr.io/intuitem/ciso-assistant-community/backend:latest
     pull_policy: always
     restart: always
