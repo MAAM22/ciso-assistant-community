@@ -20,7 +20,7 @@ services:
       start_period: 100s
 
   huey:
-    container_name: huey
+    container_name: huey_new
     image: ghcr.io/intuitem/ciso-assistant-community/backend:latest
     pull_policy: always
     depends_on:
@@ -42,7 +42,7 @@ services:
         poetry run python manage.py run_huey -w 2 --scheduler-interval 60
 
   frontend:
-    container_name: frontend
+    container_name: frontend_new
     environment:
       - PUBLIC_BACKEND_API_URL=http://backend:8000/api
       - PUBLIC_BACKEND_API_EXPOSED_URL=https://localhost:8443/api
@@ -55,7 +55,7 @@ services:
         condition: service_healthy
 
   caddy:
-    container_name: caddy
+    container_name: caddy_new
     image: caddy:2.8.4
     environment:
       - CISO_ASSISTANT_URL=https://localhost:8443
